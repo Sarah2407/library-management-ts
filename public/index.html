@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <h1>Library Management</h1>
+    
+    <!-- Book List -->
+    <h2>Available Books</h2>
+    <ul class="book-list">      
+    </ul>
+
+    <!-- Borrowed Books -->
+    <h2>Borrowed Books</h2>
+    <ul class="borrowed-list">      
+    </ul>
+  </div>
+
+  <footer>
+    <!-- Form to Add a New Book -->
+    <form id="addBookForm" class="new-item-form">
+      <div class="field">
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" required>
+      </div>
+      <div class="field">
+        <label for="author">Author:</label>
+        <input type="text" id="author" required>
+      </div>   
+      <button type="submit">Add Book</button>
+    </form>
+
+    <!-- Form to Borrow/Return a Book -->
+    <form id="borrowReturnForm" class="new-item-form">
+      <div class="field">
+        <label for="bookTitle">Book Title:</label>
+        <input type="text" id="bookTitle" required>
+      </div>
+      <div class="field">
+        <label for="action">Action:</label>
+        <select id="action">
+          <option value="borrow">Borrow</option>
+          <option value="return">Return</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </footer>
+
+  <script type="module" src='app.js'></script>
+</body>
+</html>
