@@ -13,12 +13,12 @@ export class Library {
     return this.books;
   }
 
-  // remove a book by title
-  removeBookByTitle(title: string): void {
+  // remove a book
+  removeBook(title: string): void {
     this.books = this.books.filter((book) => book.title !== title);
   }
 
-  // borrow a book by title
+  // borrow a book
   borrowBook(title: string): boolean {
     const book = this.books.find(
       (book) => book.title === title && book.status === "available"
@@ -30,7 +30,7 @@ export class Library {
     return false;
   }
 
-  // return a book by title
+  // return a book
   returnBook(title: string): boolean {
     const book = this.books.find(
       (book) => book.title === title && book.status === "borrowed"
