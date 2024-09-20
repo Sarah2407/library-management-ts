@@ -24,7 +24,7 @@ const actionInput = document.getElementById("action") as HTMLSelectElement;
 
 //#region Book Methods
 
-// show available books
+// show books
 function showBooks(): void {
   bookList.innerHTML = "";
   borrowedList.innerHTML = "";
