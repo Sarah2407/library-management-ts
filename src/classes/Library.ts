@@ -5,17 +5,21 @@ export class Library {
 
   // add a book
   addBook(book: Book): void {
+    const availableBook = this.books.find(
+      (book1) => book1.title === book.title && book1.author === book.author
+    );
+    if (availableBook) {
+      alert(
+        `Book with title ${availableBook.title} and author ${availableBook.author} already exists`
+      );
+      return;
+    }
     this.books.push(book);
   }
 
   // get all books
   getBooks(): Book[] {
     return this.books;
-  }
-
-  // remove a book
-  removeBook(title: string): void {
-    this.books = this.books.filter((book) => book.title !== title);
   }
 
   // borrow a book
@@ -27,6 +31,7 @@ export class Library {
       book.status = "borrowed";
       return true;
     }
+    alert("Book is not available");
     return false;
   }
 
