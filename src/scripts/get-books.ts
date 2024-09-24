@@ -28,6 +28,13 @@ export function showBooks(): void {
       const deleteBtn = li.querySelector(".delete-btn") as HTMLButtonElement;
       deleteBtn.onclick = () => deleteBook(book.title);
 
+      const editBtn = li.querySelector(".edit-btn") as HTMLButtonElement;
+      editBtn.onclick = () => {
+        window.location.href = `editBook.html?title=${encodeURIComponent(
+          book.title
+        )}`;
+      };
+
       bookList.appendChild(li);
     }
   });

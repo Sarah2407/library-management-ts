@@ -20,6 +20,10 @@ export function showBooks() {
           `;
             const deleteBtn = li.querySelector(".delete-btn");
             deleteBtn.onclick = () => deleteBook(book.title);
+            const editBtn = li.querySelector(".edit-btn");
+            editBtn.onclick = () => {
+                window.location.href = `editBook.html?title=${encodeURIComponent(book.title)}`;
+            };
             bookList.appendChild(li);
         }
     });
