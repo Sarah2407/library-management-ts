@@ -10,7 +10,7 @@ export function showBorrowedBooks() {
             li.innerHTML = `
             <h4>${book.title}</h4>
             <p>${book.author}</p>
-            <p>Year: ${book.year}</p>     
+            <p>Published in: ${book.year}</p>     
             <button class="return-btn">Return</button>
           `;
             const returnBtn = li.querySelector(".return-btn");
