@@ -1,5 +1,6 @@
 import { Storage } from "./storage.js";
 import { deleteBook } from "./delete-book.js";
+import { borrowBook } from "./borrow.js";
 const bookList = document.querySelector(".book-list");
 export function showBooks() {
     bookList.innerHTML = "";
@@ -10,7 +11,7 @@ export function showBooks() {
             li.innerHTML = `
             <h4>${book.title}</h4>
             <p>${book.author}</p>
-            <p>Year: ${book.year}</p>           
+            <p>Published in: ${book.year}</p>           
             
             <div class="book-actions">
                 <button class="edit-btn">Edit</button>
@@ -23,6 +24,11 @@ export function showBooks() {
             const editBtn = li.querySelector(".edit-btn");
             editBtn.onclick = () => {
                 window.location.href = `editBook.html?title=${encodeURIComponent(book.title)}`;
+            };
+            const borrowBtn = li.querySelector(".borrow-btn");
+            borrowBtn.onclick = () => {
+                borrowBook(book.title);
+                showBooks();
             };
             bookList.appendChild(li);
         }
