@@ -1,6 +1,7 @@
 import { Storage } from "./storage.js";
+import { deleteBook } from "./delete-book.js";
 const bookList = document.querySelector(".book-list");
-function showBooks() {
+export function showBooks() {
     bookList.innerHTML = "";
     const books = Storage.getBooks();
     books.forEach((book) => {
@@ -12,11 +13,13 @@ function showBooks() {
             <p>Year: ${book.year}</p>           
             
             <div class="book-actions">
-                <button onclick="editBook('${book.title}')">Edit</button>
-                <button onclick="deleteBook('${book.title}')">Delete</button>
-                <button onclick="borrowBook('${book.title}')">Borrow</button>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+                <button class="borrow-btn">Borrow</button>
             </div>
           `;
+            const deleteBtn = li.querySelector(".delete-btn");
+            deleteBtn.onclick = () => deleteBook(book.title);
             bookList.appendChild(li);
         }
     });

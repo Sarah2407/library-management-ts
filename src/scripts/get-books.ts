@@ -1,10 +1,11 @@
 import { Storage } from "./storage.js";
+import { deleteBook } from "./delete-book.js";
 
 //get html element
 const bookList = document.querySelector(".book-list") as HTMLUListElement;
 
 //show books
-function showBooks(): void {
+export function showBooks(): void {
   bookList.innerHTML = "";
 
   const books = Storage.getBooks();
@@ -18,11 +19,14 @@ function showBooks(): void {
             <p>Year: ${book.year}</p>           
             
             <div class="book-actions">
-                <button onclick="editBook('${book.title}')">Edit</button>
-                <button onclick="deleteBook('${book.title}')">Delete</button>
-                <button onclick="borrowBook('${book.title}')">Borrow</button>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+                <button class="borrow-btn">Borrow</button>
             </div>
           `;
+
+      const deleteBtn = li.querySelector(".delete-btn") as HTMLButtonElement;
+      deleteBtn.onclick = () => deleteBook(book.title);
 
       bookList.appendChild(li);
     }
