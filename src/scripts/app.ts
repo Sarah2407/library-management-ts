@@ -1,50 +1,52 @@
-// import { Library } from "../classes/Library.js";
-// import { Book } from "../models/Book.js";
+import { Storage } from "./storage.js";
+import { deleteBook } from "./delete-book.js";
+import { borrowBook } from "./borrow.js";
 
-// // create a new library instance
-// const library = new Library();
+//get html element
+const bookList = document.querySelector(".book-list") as HTMLUListElement;
 
-// //#region Html Elements
-// const bookList = document.querySelector(".book-list") as HTMLUListElement;
-// const borrowedList = document.querySelector(
-//   ".borrowed-list"
-// ) as HTMLUListElement;
+//show books
+export function showBooks(): void {
+  bookList.innerHTML = "";
 
-// const addBookForm = document.getElementById("addBookForm") as HTMLFormElement;
-// const titleInput = document.getElementById("title") as HTMLInputElement;
-// const authorInput = document.getElementById("author") as HTMLInputElement;
+  const books = Storage.getBooks();
 
-// const borrowReturnForm = document.getElementById(
-//   "borrowReturnForm"
-// ) as HTMLFormElement;
-// const bookTitleInput = document.getElementById("bookTitle") as HTMLInputElement;
-// const actionInput = document.getElementById("action") as HTMLSelectElement;
+  books.forEach((book) => {
+    if (book.status === "available") {
+      const li = document.createElement("li");
+      li.innerHTML = `
+            <h4>${book.title}</h4>
+            <p>${book.author}</p>
+            <p>Published in: ${book.year}</p>           
+            
+            <div class="book-actions">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+                <button class="borrow-btn">Borrow</button>
+            </div>
+          `;
 
-// //#endregion
+      const deleteBtn = li.querySelector(".delete-btn") as HTMLButtonElement;
+      deleteBtn.onclick = () => deleteBook(book.title);
 
-// //#region Book Methods
+      const editBtn = li.querySelector(".edit-btn") as HTMLButtonElement;
+      editBtn.onclick = () => {
+        window.location.href = `editBook.html?title=${encodeURIComponent(
+          book.title
+        )}`;
+      };
 
-// //#endregion
+      const borrowBtn = li.querySelector(".borrow-btn") as HTMLButtonElement;
+      borrowBtn.onclick = () => {
+        borrowBook(book.title);
+        showBooks();
+      };
 
-// //#region Event Listeners
+      bookList.appendChild(li);
+    }
+  });
+}
 
-// //borrow or return book
-// borrowReturnForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   const title = bookTitleInput.value;
-//   const action = actionInput.value;
-
-//   if (action === "borrow") {
-//     library.borrowBook(title);
-//   } else if (action === "return") {
-//     library.returnBook(title);
-//   }
-
-//   showBooks();
-
-//   bookTitleInput.value = "";
-//   actionInput.value = "";
-// });
-
-// //#endregion
+window.onload = () => {
+  showBooks();
+};

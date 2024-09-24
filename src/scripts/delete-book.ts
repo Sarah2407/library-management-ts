@@ -1,5 +1,5 @@
 import { Storage } from "./storage.js";
-import { showBooks } from "./get-books.js";
+import { showBooks } from "./app.js";
 
 export function deleteBook(bookTitle: string) {
   const books = Storage.getBooks();
