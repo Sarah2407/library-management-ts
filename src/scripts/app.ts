@@ -50,22 +50,6 @@ function showBooks(): void {
 
 //#region Event Listeners
 
-// add a book
-addBookForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const title = titleInput.value;
-  const author = authorInput.value;
-  const book = new Book(title, author, "available");
-
-  library.addBook(book);
-
-  showBooks();
-
-  titleInput.value = "";
-  authorInput.value = "";
-});
-
 //borrow or return book
 borrowReturnForm.addEventListener("submit", (e) => {
   e.preventDefault();
