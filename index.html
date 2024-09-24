@@ -16,42 +16,16 @@
     <ul class="book-list">      
     </ul>
 
-    <!-- Borrowed Books -->
-    <h2>Borrowed Books</h2>
-    <ul class="borrowed-list">      
-    </ul>
-  </div>
+    <div id="no-books-message" class="no-books">
+      <p>No books available.</p>
+    </div>
 
-  <footer>
-    <!-- form to add a new book -->
-    <form id="addBookForm" class="new-item-form">
-      <div class="field">
-        <label for="title">Book Title:</label>
-        <input type="text" id="title" required>
-      </div>
-      <div class="field">
-        <label for="author">Author:</label>
-        <input type="text" id="author" required>
-      </div>   
-      <button type="submit">Add Book</button>
-    </form>
+    <div class="navigation">
+      <a href="addBook.html" class="add-book">Add a Book</a>
+      <a href="borrowedBooks.html" class="view-borrowed-books">View Borrowed Books</a>
+    </div>
 
-    <!-- form to borrow or return a book -->
-    <form id="borrowReturnForm" class="new-item-form">
-      <div class="field">
-        <label for="bookTitle">Book Title:</label>
-        <input type="text" id="bookTitle" required>
-      </div>
-      <div class="field">
-        <label for="action">Action:</label>
-        <select id="action">
-          <option value="borrow">Borrow</option>
-          <option value="return">Return</option>
-        </select>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </footer>
+  </div>  
 
   <script type="module" src="public/scripts/app.js"></script>
 </body>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="./public/styles/style.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+        
+        <h1>Edit Book Details</h1>
+
+        <div class="navigation">
+            <a href="index.html" class="back-to-home">Back to Home</a>
+        </div>
+
+        <!-- Edit a book form -->
+        <form id="edit-book-form">
+            <div class="label"> 
+                <label for="edit-title">Title:</label>
+                <input type="text" id="edit-title" name="title" required>
+            </div>
+
+            <div class="label">
+                <label for="edit-author">Author:</label>
+                <input type="text" id="edit-author" name="author" required>
+            </div>
+
+            <div class="label">
+                <label for="edit-year">Year:</label>
+                <input type="number" id="edit-year" name="year" required>
+            </div>
+
+            <div class="label">
+                <button type="submit" class="edit-book-button">Update Book</button>
+            </div>
+        </form>
+    </div>
+    
+    </div>  
+    
+      <script type="module" src="public/scripts/app.js"></script>
+
+</body>
+</html>
