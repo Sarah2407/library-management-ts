@@ -1,5 +1,5 @@
-import { Library } from "./classes/Library.js";
-import { Book } from "./models/Book.js";
+import { Library } from "../classes/Library.js";
+import { Book } from "../models/Book.js";
 
 // create a new library instance
 const library = new Library();
