@@ -1,5 +1,5 @@
-import { Book } from "../models/Book";
-import { Storage } from "./storage";
+import { Book } from "../models/Book.js";
+import { Storage } from "./storage.js";
 
 //get html element
 const addBookForm = document.getElementById("add-book-form") as HTMLFormElement;

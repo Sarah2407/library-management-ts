@@ -32,9 +32,10 @@ ul {
 }
 
 li {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  display: flex; /* Change to flexbox */
+  justify-content: space-between; /* Space between book details and buttons */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between the book details and buttons */
   padding: 6px 10px;
   border: 1px solid #eee;
   margin: 10px auto;
@@ -99,11 +100,29 @@ a:hover {
 }
 
 button {
-  color: white;
-  border: 0;
-  background: #ff0aa7;
-  padding: 6px;
-  min-width: 80px;
+  padding: 4px 8px;
+  border: none;
   border-radius: 4px;
+  background-color: #ff0aa7; 
+  color: white; 
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px; 
+  white-space: nowrap;
+}
+
+button:hover {
+  background-color: #e60092;
+}
+
+button:disabled {
+  background-color: #ccc; 
+  cursor: not-allowed;
+}
+
+.book-actions {
+  display: flex; /* Use flexbox for the button container */
+  gap: 5px; /* Space between buttons */
 }
 

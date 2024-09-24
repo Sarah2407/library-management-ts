@@ -1,72 +1,50 @@
-import { Library } from "../classes/Library.js";
-import { Book } from "../models/Book.js";
+// import { Library } from "../classes/Library.js";
+// import { Book } from "../models/Book.js";
 
-// create a new library instance
-const library = new Library();
+// // create a new library instance
+// const library = new Library();
 
-//#region Html Elements
-const bookList = document.querySelector(".book-list") as HTMLUListElement;
-const borrowedList = document.querySelector(
-  ".borrowed-list"
-) as HTMLUListElement;
+// //#region Html Elements
+// const bookList = document.querySelector(".book-list") as HTMLUListElement;
+// const borrowedList = document.querySelector(
+//   ".borrowed-list"
+// ) as HTMLUListElement;
 
-const addBookForm = document.getElementById("addBookForm") as HTMLFormElement;
-const titleInput = document.getElementById("title") as HTMLInputElement;
-const authorInput = document.getElementById("author") as HTMLInputElement;
+// const addBookForm = document.getElementById("addBookForm") as HTMLFormElement;
+// const titleInput = document.getElementById("title") as HTMLInputElement;
+// const authorInput = document.getElementById("author") as HTMLInputElement;
 
-const borrowReturnForm = document.getElementById(
-  "borrowReturnForm"
-) as HTMLFormElement;
-const bookTitleInput = document.getElementById("bookTitle") as HTMLInputElement;
-const actionInput = document.getElementById("action") as HTMLSelectElement;
+// const borrowReturnForm = document.getElementById(
+//   "borrowReturnForm"
+// ) as HTMLFormElement;
+// const bookTitleInput = document.getElementById("bookTitle") as HTMLInputElement;
+// const actionInput = document.getElementById("action") as HTMLSelectElement;
 
-//#endregion
+// //#endregion
 
-//#region Book Methods
+// //#region Book Methods
 
-// show books
-function showBooks(): void {
-  bookList.innerHTML = "";
-  borrowedList.innerHTML = "";
+// //#endregion
 
-  const books = library.getBooks();
+// //#region Event Listeners
 
-  books.forEach((book) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-        <h4>${book.title}</h4>
-        <p>${book.author}</p>
-      `;
+// //borrow or return book
+// borrowReturnForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-    if (book.status !== "available") {
-      borrowedList.appendChild(li);
-    } else {
-      bookList.appendChild(li);
-    }
-  });
-}
+//   const title = bookTitleInput.value;
+//   const action = actionInput.value;
 
-//#endregion
+//   if (action === "borrow") {
+//     library.borrowBook(title);
+//   } else if (action === "return") {
+//     library.returnBook(title);
+//   }
 
-//#region Event Listeners
+//   showBooks();
 
-//borrow or return book
-borrowReturnForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+//   bookTitleInput.value = "";
+//   actionInput.value = "";
+// });
 
-  const title = bookTitleInput.value;
-  const action = actionInput.value;
-
-  if (action === "borrow") {
-    library.borrowBook(title);
-  } else if (action === "return") {
-    library.returnBook(title);
-  }
-
-  showBooks();
-
-  bookTitleInput.value = "";
-  actionInput.value = "";
-});
-
-//#endregion
+// //#endregion
