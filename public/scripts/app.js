@@ -2,9 +2,17 @@ import { Storage } from "./storage.js";
 import { deleteBook } from "./delete-book.js";
 import { borrowBook } from "./borrow.js";
 const bookList = document.querySelector(".book-list");
+const noBooksMsg = document.getElementById("no-books-message");
 export function showBooks() {
     bookList.innerHTML = "";
     const books = Storage.getBooks();
+    const availableBooks = books.filter((book) => book.status === "available");
+    if (availableBooks.length === 0) {
+        noBooksMsg.style.display = "block";
+    }
+    else {
+        noBooksMsg.style.display = "none";
+    }
     books.forEach((book) => {
         if (book.status === "available") {
             const li = document.createElement("li");

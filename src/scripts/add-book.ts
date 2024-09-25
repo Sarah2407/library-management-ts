@@ -20,6 +20,16 @@ addBookForm.addEventListener("submit", (event) => {
 
   const existingBooks = Storage.getBooks();
 
+  // check if the book already exists
+  const bookExists = existingBooks.some(
+    (b) => b.title === title && b.author === author
+  );
+
+  if (bookExists) {
+    alert("This book already exists in the library.");
+    return;
+  }
+
   existingBooks.push(book);
 
   //save books to local storage

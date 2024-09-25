@@ -4,12 +4,22 @@ import { borrowBook } from "./borrow.js";
 
 //get html element
 const bookList = document.querySelector(".book-list") as HTMLUListElement;
+const noBooksMsg = document.getElementById(
+  "no-books-message"
+) as HTMLDivElement;
 
 //show books
 export function showBooks(): void {
   bookList.innerHTML = "";
 
   const books = Storage.getBooks();
+
+  const availableBooks = books.filter((book) => book.status === "available");
+  if (availableBooks.length === 0) {
+    noBooksMsg.style.display = "block";
+  } else {
+    noBooksMsg.style.display = "none";
+  }
 
   books.forEach((book) => {
     if (book.status === "available") {

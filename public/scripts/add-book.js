@@ -11,6 +11,11 @@ addBookForm.addEventListener("submit", (event) => {
     const year = parseInt(yearInput.value.trim(), 10);
     const book = new Book(title, author, year, "available");
     const existingBooks = Storage.getBooks();
+    const bookExists = existingBooks.some((b) => b.title === title && b.author === author);
+    if (bookExists) {
+        alert("This book already exists in the library.");
+        return;
+    }
     existingBooks.push(book);
     Storage.saveBooks(existingBooks);
     titleInput.value = "";
