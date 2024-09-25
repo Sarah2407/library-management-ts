@@ -37,18 +37,18 @@ export function showBooks(): void {
           `;
 
       const deleteBtn = li.querySelector(".delete-btn") as HTMLButtonElement;
-      deleteBtn.onclick = () => deleteBook(book.title);
+      deleteBtn.onclick = () => deleteBook(book.id);
 
       const editBtn = li.querySelector(".edit-btn") as HTMLButtonElement;
       editBtn.onclick = () => {
-        window.location.href = `editBook.html?title=${encodeURIComponent(
-          book.title
+        window.location.href = `editBook.html?id=${encodeURIComponent(
+          book.id
         )}`;
       };
 
       const borrowBtn = li.querySelector(".borrow-btn") as HTMLButtonElement;
       borrowBtn.onclick = () => {
-        borrowBook(book.title);
+        borrowBook(book.id);
         showBooks();
       };
 

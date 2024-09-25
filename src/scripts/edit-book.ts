@@ -1,14 +1,14 @@
 import { Storage } from "./storage.js";
-import { Book } from "../models/Book.js";
+import { Book, isValidYear } from "../models/Book.js";
 
 const editBookForm = document.getElementById(
   "edit-book-form"
 ) as HTMLFormElement;
 
 // Load book details into the edit form
-export function loadEditForm(bookTitle: string) {
+export function loadEditForm(bookId: string) {
   const books = Storage.getBooks();
-  const bookToEdit = books.find((book) => book.title === bookTitle);
+  const bookToEdit = books.find((book) => book.id === bookId);
 
   if (bookToEdit) {
     (document.getElementById("edit-title") as HTMLInputElement).value =
@@ -20,33 +20,53 @@ export function loadEditForm(bookTitle: string) {
   }
 }
 
-// Get book title from URL
-function getBookTitleFromUrl() {
+// Get book id from URL
+function getBookIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("title");
+  return urlParams.get("id");
 }
 
 // Function to update the book
 function updateBook(
-  oldTitle: string,
+  bookId: string,
   newTitle: string,
   author: string,
   year: number
 ) {
   const books = Storage.getBooks();
-  const bookIndex = books.findIndex((book) => book.title === oldTitle);
+
+  // Check if another book with the same title/ author already exists but exclude the current book being updated
+  const bookExists = books.some(
+    (book) =>
+      book.title === newTitle && book.author === author && book.id !== bookId
+  );
+
+  if (bookExists) {
+    alert("This book already exists in the library.");
+    return;
+  }
+
+  //check if year is valid
+  if (!isValidYear(year)) {
+    alert("Please enter a valid 4-digit year.");
+    return;
+  }
+
+  const bookIndex = books.findIndex((book) => book.id === bookId);
   if (bookIndex !== -1) {
     // Update book details
-    books[bookIndex] = new Book(newTitle, author, year, "available");
+    books[bookIndex] = new Book(bookId, newTitle, author, year, "available");
     Storage.saveBooks(books);
   }
+
+  alert("Book updated successfully!");
 }
 
-const oldTitle = getBookTitleFromUrl();
+const bookID = getBookIdFromUrl();
 
-if (oldTitle) {
+if (bookID) {
   //load book details
-  loadEditForm(oldTitle);
+  loadEditForm(bookID);
 
   // Edit form event listener
   editBookForm.addEventListener("submit", (event) => {
@@ -63,9 +83,8 @@ if (oldTitle) {
       10
     );
 
-    updateBook(oldTitle, newTitle, author, year);
+    updateBook(bookID, newTitle, author, year);
 
-    alert("Book updated successfully!");
     window.location.href = "index.html";
   });
 } else {

@@ -1,9 +1,9 @@
 import { Storage } from "./storage.js";
-import { Book } from "../models/Book.js";
+import { Book, isValidYear } from "../models/Book.js";
 const editBookForm = document.getElementById("edit-book-form");
-export function loadEditForm(bookTitle) {
+export function loadEditForm(bookId) {
     const books = Storage.getBooks();
-    const bookToEdit = books.find((book) => book.title === bookTitle);
+    const bookToEdit = books.find((book) => book.id === bookId);
     if (bookToEdit) {
         document.getElementById("edit-title").value =
             bookToEdit.title;
@@ -13,28 +13,37 @@ export function loadEditForm(bookTitle) {
             bookToEdit.year.toString();
     }
 }
-function getBookTitleFromUrl() {
+function getBookIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("title");
+    return urlParams.get("id");
 }
-function updateBook(oldTitle, newTitle, author, year) {
+function updateBook(bookId, newTitle, author, year) {
     const books = Storage.getBooks();
-    const bookIndex = books.findIndex((book) => book.title === oldTitle);
+    const bookExists = books.some((book) => book.title === newTitle && book.author === author && book.id !== bookId);
+    if (bookExists) {
+        alert("This book already exists in the library.");
+        return;
+    }
+    if (!isValidYear(year)) {
+        alert("Please enter a valid 4-digit year.");
+        return;
+    }
+    const bookIndex = books.findIndex((book) => book.id === bookId);
     if (bookIndex !== -1) {
-        books[bookIndex] = new Book(newTitle, author, year, "available");
+        books[bookIndex] = new Book(bookId, newTitle, author, year, "available");
         Storage.saveBooks(books);
     }
+    alert("Book updated successfully!");
 }
-const oldTitle = getBookTitleFromUrl();
-if (oldTitle) {
-    loadEditForm(oldTitle);
+const bookID = getBookIdFromUrl();
+if (bookID) {
+    loadEditForm(bookID);
     editBookForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const newTitle = document.getElementById("edit-title").value.trim();
         const author = document.getElementById("edit-author").value.trim();
         const year = parseInt(document.getElementById("edit-year").value.trim(), 10);
-        updateBook(oldTitle, newTitle, author, year);
-        alert("Book updated successfully!");
+        updateBook(bookID, newTitle, author, year);
         window.location.href = "index.html";
     });
 }

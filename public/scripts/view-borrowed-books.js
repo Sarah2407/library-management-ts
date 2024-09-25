@@ -23,7 +23,7 @@ export function showBorrowedBooks() {
           `;
             const returnBtn = li.querySelector(".return-btn");
             returnBtn.onclick = () => {
-                returnBook(book.title);
+                returnBook(book.id);
                 showBorrowedBooks();
             };
             borrowedBookList.appendChild(li);

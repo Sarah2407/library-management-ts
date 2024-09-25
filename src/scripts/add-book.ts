@@ -1,5 +1,6 @@
-import { Book } from "../models/Book.js";
+import { Book, generateUniqueId, isValidYear } from "../models/Book.js";
 import { Storage } from "./storage.js";
+// import { generateUniqueId } from "../models/Book.js";
 
 //get html element
 const addBookForm = document.getElementById("add-book-form") as HTMLFormElement;
@@ -16,7 +17,8 @@ addBookForm.addEventListener("submit", (event) => {
   const author = authorInput.value.trim();
   const year = parseInt(yearInput.value.trim(), 10);
 
-  const book = new Book(title, author, year, "available");
+  const bookId = generateUniqueId();
+  const book = new Book(bookId, title, author, year, "available");
 
   const existingBooks = Storage.getBooks();
 
@@ -27,6 +29,12 @@ addBookForm.addEventListener("submit", (event) => {
 
   if (bookExists) {
     alert("This book already exists in the library.");
+    return;
+  }
+
+  //check if year is valid
+  if (!isValidYear(year)) {
+    alert("Please enter a valid 4-digit year.");
     return;
   }
 
@@ -41,4 +49,5 @@ addBookForm.addEventListener("submit", (event) => {
   yearInput.value = "";
 
   alert("Book added successfully!");
+  window.location.href = "index.html";
 });

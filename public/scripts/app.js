@@ -28,14 +28,14 @@ export function showBooks() {
             </div>
           `;
             const deleteBtn = li.querySelector(".delete-btn");
-            deleteBtn.onclick = () => deleteBook(book.title);
+            deleteBtn.onclick = () => deleteBook(book.id);
             const editBtn = li.querySelector(".edit-btn");
             editBtn.onclick = () => {
-                window.location.href = `editBook.html?title=${encodeURIComponent(book.title)}`;
+                window.location.href = `editBook.html?id=${encodeURIComponent(book.id)}`;
             };
             const borrowBtn = li.querySelector(".borrow-btn");
             borrowBtn.onclick = () => {
-                borrowBook(book.title);
+                borrowBook(book.id);
                 showBooks();
             };
             bookList.appendChild(li);

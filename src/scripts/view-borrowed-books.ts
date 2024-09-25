@@ -34,7 +34,7 @@ export function showBorrowedBooks(): void {
 
       const returnBtn = li.querySelector(".return-btn") as HTMLButtonElement;
       returnBtn.onclick = () => {
-        returnBook(book.title);
+        returnBook(book.id);
         showBorrowedBooks();
       };
 
