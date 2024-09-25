@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Management</title>
-  <link rel="stylesheet" href="./public/styles/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Management</title>
+    <link rel="stylesheet" href="./public/styles/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Library Management</h1>
 
-  <div class="wrapper">
-    <h1>Library Management</h1>
-    
-    <!-- Book List -->
-    <h2>Available Books</h2>
-    <ul class="book-list">      
-    </ul>
+      <!-- Book List -->
+      <h2>Available Books</h2>
+      <ul class="book-list"></ul>
 
-    <div id="no-books-message" class="no-books" style="display: none;">
-      <p>No books available.</p>
+      <div id="no-books-message" class="no-books" style="display: none">
+        <p>No books available.</p>
+      </div>
+
+      <div class="navigation">
+        <a href="addBook.html" class="add-book">Add a Book</a>
+        <a href="borrowedBooks.html" class="view-borrowed-books"
+          >View Borrowed Books</a
+        >
+      </div>
     </div>
 
-    <div class="navigation">
-      <a href="addBook.html" class="add-book">Add a Book</a>
-      <a href="borrowedBooks.html" class="view-borrowed-books">View Borrowed Books</a>
-    </div>
-
-  </div>  
-
-  <script type="module" src="public/scripts/app.js"></script>
-</body>
+    <script type="module" src="public/scripts/app.js"></script>
+  </body>
 </html>
