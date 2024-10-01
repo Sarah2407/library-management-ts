@@ -28,8 +28,8 @@ You need a browser with JavaScript enabled to run this project. The project uses
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/sarah2407/library-management-system.git
-   cd library-management-system
+   git clone https://github.com/Sarah2407/library-management-ts.git
+   cd library-management-ts
    ```
 
 2. Open the `index.html` file in your browser:
